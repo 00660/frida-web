@@ -59,14 +59,14 @@ function nowLabel() {
 
 function renderConnectHint(status) {
   elements.connectHint.innerHTML =
-    `Frida stays local at <code>127.0.0.1:${status.frida.port}</code>.<br>` +
-    `Use <code>adb forward tcp:${status.frida.port} tcp:${status.frida.port}</code> and then <code>frida-ps -H 127.0.0.1:${status.frida.port}</code>.`;
+    `Frida 当前仅监听本机：<code>127.0.0.1:${status.frida.port}</code>。<br>` +
+    `请先执行 <code>adb forward tcp:${status.frida.port} tcp:${status.frida.port}</code>，再使用 <code>frida-ps -H 127.0.0.1:${status.frida.port}</code> 连接。`;
 }
 
 function renderStatus(status) {
-  elements.fridaState.textContent = status.frida.running ? "Running" : "Stopped";
-  elements.panelState.textContent = status.panel.running ? "Running" : "Stopped";
-  elements.autostartState.textContent = status.frida.autostart ? "Enabled" : "Disabled";
+  elements.fridaState.textContent = status.frida.running ? "运行中" : "已停止";
+  elements.panelState.textContent = status.panel.running ? "运行中" : "已停止";
+  elements.autostartState.textContent = status.frida.autostart ? "已启用" : "已关闭";
   elements.lastSync.textContent = nowLabel();
   elements.fridaListen.textContent = `127.0.0.1:${status.frida.port}`;
   elements.panelListen.textContent = `${status.panel.bind}:${status.panel.port}`;
@@ -91,14 +91,14 @@ async function refreshConfig() {
 async function refreshLogs() {
   const logName = elements.logName.value;
   const lines = elements.logLines.value || "160";
-  elements.logOutput.textContent = "Loading logs...";
+  elements.logOutput.textContent = "正在加载日志...";
   const text = await apiText(`/cgi-bin/logs.sh?name=${encodeURIComponent(logName)}&lines=${encodeURIComponent(lines)}`);
-  elements.logOutput.textContent = text || "Log is empty.";
+  elements.logOutput.textContent = text || "当前日志为空。";
 }
 
 async function refreshAll() {
   await Promise.all([refreshStatus(), refreshConfig(), refreshLogs()]);
-  flash("Panel synced.", "success");
+  flash("面板已同步。", "success");
 }
 
 async function runControl(action) {
@@ -129,7 +129,7 @@ elements.configForm.addEventListener("submit", async (event) => {
   });
 
   await refreshAll();
-  flash("Frida settings saved and service restarted.", "success");
+  flash("Frida 配置已保存，并已重启服务。", "success");
 });
 
 elements.startFrida.addEventListener("click", async () => {
@@ -155,5 +155,5 @@ setInterval(() => {
 }, 5000);
 
 refreshAll().catch((error) => {
-  flash(error.message, "error");
+  flash(`操作失败：${error.message}`, "error");
 });

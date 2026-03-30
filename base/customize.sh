@@ -58,6 +58,7 @@ print_modname() {
   ui_print "    *          Magisk/KernelSU/APatch          *"
   ui_print "    *                FridaWeb                  *"
   ui_print "    ********************************************"
+  ui_print "    *            独立品牌模块版本             *"
   ui_print " "
 }
 
@@ -73,13 +74,13 @@ on_install() {
   ui_print "- Detected architecture: $F_ARCH"
 
   if [ "$BOOTMODE" ] && [ "$KSU" ]; then
-      ui_print "- Installing from KernelSU"
+      ui_print "- FridaWeb 安装来源：KernelSU"
       ui_print "- KernelSU version: $KSU_KERNEL_VER_CODE (kernel) + $KSU_VER_CODE (ksud)"
   elif [ "$BOOTMODE" ] && [ "$APATCH" ]; then
-      ui_print "- Installing from APatch"
+      ui_print "- FridaWeb 安装来源：APatch"
       ui_print "- APatch version: $APATCH_VER_CODE. Magisk version: $MAGISK_VER_CODE"
   elif [ "$BOOTMODE" ] && [ "$MAGISK_VER_CODE" ]; then
-      ui_print "- Installing from Magisk"
+      ui_print "- FridaWeb 安装来源：Magisk"
       ui_print "- Magisk version: $MAGISK_VER_CODE ($MAGISK_VER)"
   else
     ui_print "*********************************************************"
@@ -88,7 +89,7 @@ on_install() {
     abort    "*********************************************************"
   fi
 
-  ui_print "- Unzipping module files..."
+  ui_print "- 正在解压 FridaWeb 模块文件..."
   F_TARGETDIR="$MODPATH/system/bin"
   mkdir -p "$F_TARGETDIR"
   chcon -R u:object_r:system_file:s0 "$F_TARGETDIR"
@@ -98,7 +99,7 @@ on_install() {
   mv "$F_TARGETDIR/frida-server-$F_ARCH" "$F_TARGETDIR/frida-server"
 
   ensure_config_files
-  ui_print "- LAN panel default URL: http://<device-ip>:${DEFAULT_PANEL_PORT}/"
+  ui_print "- FridaWeb 面板地址：http://<device-ip>:${DEFAULT_PANEL_PORT}/"
 }
 
 set_permissions() {
@@ -115,7 +116,7 @@ on_install
 set_permissions
 
 [ -f "$MODPATH/disable" ] && {
-  string="description=Frida disabled on install"
+  string="description=FridaWeb 安装后为禁用状态"
   sed -i "s|^description=.*|$string|g" "$MODPATH/module.prop"
 }
 

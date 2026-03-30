@@ -67,7 +67,7 @@ version={project_tag}
 versionCode={generate_version_code(project_tag)}
 author=00660
 updateJson=https://github.com/{repo_slug}/releases/latest/download/updater.json
-description=Frida server on boot with LAN control panel"""
+description=FridaWeb 开机启动与局域网控制面板"""
 
     with open(path.joinpath("module.prop"), "w", newline="\n") as f:
         f.write(module_prop)

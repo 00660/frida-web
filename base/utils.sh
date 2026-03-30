@@ -130,22 +130,22 @@ set_module_description() {
 
     case "$state" in
         active)
-            label="active"
+            label="运行中"
             ;;
         idle)
-            label="idle"
+            label="空闲"
             ;;
         stopped)
-            label="stopped"
+            label="已停止"
             ;;
         failed)
-            label="failed"
+            label="失败"
             ;;
         disabled)
-            label="disabled"
+            label="已禁用"
             ;;
         missing)
-            label="binary missing"
+            label="缺少二进制文件"
             ;;
         *)
             label="$state"
@@ -153,7 +153,7 @@ set_module_description() {
     esac
 
     if [ -f "$MODPATH/module.prop" ]; then
-        description="description=Frida $label on ${FRIDA_BIND}:${FRIDA_PORT} | panel ${PANEL_PORT}"
+        description="description=FridaWeb $label | Frida ${FRIDA_BIND}:${FRIDA_PORT} | 面板 ${PANEL_PORT}"
         sed -i "s|^description=.*|$description|g" "$MODPATH/module.prop"
     fi
 }

@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FridaWeb Panel</title>
+  <title>FridaWeb 管理面板</title>
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
@@ -11,13 +11,13 @@
   <main class="shell">
     <section class="hero">
       <div>
-        <p class="eyebrow">FridaWeb LAN Panel</p>
-        <h1>Manage Frida from your LAN</h1>
-        <p class="lead">Tune the Frida port, inspect logs, and control the service without dropping to a shell.</p>
+        <p class="eyebrow">FridaWeb 局域网面板</p>
+        <h1>在局域网内管理 Frida</h1>
+        <p class="lead">直接在网页里修改 Frida 端口、查看日志、控制服务状态，不用反复切回命令行。</p>
       </div>
       <div class="hero-meta">
         <div class="stat-card">
-          <span class="stat-label">Panel</span>
+          <span class="stat-label">面板</span>
           <strong id="panelListen">0.0.0.0:28080</strong>
         </div>
         <div class="stat-card">
@@ -31,86 +31,86 @@
       <article class="card">
         <div class="card-head">
           <div>
-            <p class="eyebrow">Panel</p>
-            <h2>Direct LAN Access</h2>
+            <p class="eyebrow">面板</p>
+            <h2>局域网直接访问</h2>
           </div>
         </div>
-        <p class="lead">Open the panel from any device on the same LAN and manage this phone directly.</p>
-        <p class="hint">Frida itself stays on <code>127.0.0.1</code>; only the web panel is LAN-facing.</p>
+        <p class="lead">同一局域网内的任意设备都可以打开这个页面，直接管理当前手机上的 Frida。</p>
+        <p class="hint">Frida 本身仍然固定在 <code>127.0.0.1</code>，开放到局域网的只有网页面板。</p>
         <p id="flash" class="flash" aria-live="polite"></p>
       </article>
 
       <article class="card">
         <div class="card-head">
           <div>
-            <p class="eyebrow">Status</p>
-            <h2>Live Service State</h2>
+            <p class="eyebrow">状态</p>
+            <h2>实时服务状态</h2>
           </div>
-          <button id="refreshStatus" class="ghost">Refresh</button>
+          <button id="refreshStatus" class="ghost">刷新</button>
         </div>
         <div class="status-grid">
           <div class="status-pill">
             <span>Frida</span>
-            <strong id="fridaState">Locked</strong>
+            <strong id="fridaState">未连接</strong>
           </div>
           <div class="status-pill">
-            <span>Panel</span>
-            <strong id="panelState">Unknown</strong>
+            <span>面板</span>
+            <strong id="panelState">未知</strong>
           </div>
           <div class="status-pill">
-            <span>Autostart</span>
-            <strong id="autostartState">Unknown</strong>
+            <span>自启动</span>
+            <strong id="autostartState">未知</strong>
           </div>
           <div class="status-pill">
-            <span>Last Sync</span>
-            <strong id="lastSync">Never</strong>
+            <span>最后同步</span>
+            <strong id="lastSync">从未</strong>
           </div>
         </div>
         <div class="connection-box" id="connectHint">
-          Frida stays local. Use adb forward from your computer.
+          Frida 只监听本机回环地址，请从电脑端使用 `adb forward`。
         </div>
       </article>
 
       <article class="card">
         <div class="card-head">
           <div>
-            <p class="eyebrow">Config</p>
-            <h2>Frida Port Settings</h2>
+            <p class="eyebrow">配置</p>
+            <h2>Frida 端口设置</h2>
           </div>
         </div>
         <form id="configForm">
           <label class="field">
-            <span>Port</span>
+            <span>端口</span>
             <input id="fridaPort" name="frida_port" type="number" min="1" max="65535" placeholder="27042">
           </label>
-          <p class="hint">Frida stays bound to <code>127.0.0.1</code>. Use <code>adb forward</code> from your computer.</p>
+          <p class="hint">Frida 固定绑定在 <code>127.0.0.1</code>，请从电脑端通过 <code>adb forward</code> 连接。</p>
           <label class="toggle">
             <input id="autoStart" name="auto_start_frida" type="checkbox">
-            <span>Auto-start Frida after boot</span>
+            <span>开机后自动启动 Frida</span>
           </label>
-          <button class="primary" type="submit">Save And Restart Frida</button>
+          <button class="primary" type="submit">保存并重启 Frida</button>
         </form>
       </article>
 
       <article class="card">
         <div class="card-head">
           <div>
-            <p class="eyebrow">Control</p>
-            <h2>Service Actions</h2>
+            <p class="eyebrow">控制</p>
+            <h2>服务操作</h2>
           </div>
         </div>
         <div class="actions">
-          <button id="startFrida" class="secondary">Start</button>
-          <button id="stopFrida" class="ghost">Stop</button>
-          <button id="restartFrida" class="primary">Restart</button>
+          <button id="startFrida" class="secondary">启动</button>
+          <button id="stopFrida" class="ghost">停止</button>
+          <button id="restartFrida" class="primary">重启</button>
         </div>
       </article>
 
       <article class="card card-wide">
         <div class="card-head">
           <div>
-            <p class="eyebrow">Logs</p>
-            <h2>Inspect Runtime Output</h2>
+            <p class="eyebrow">日志</p>
+            <h2>查看运行日志</h2>
           </div>
           <div class="log-controls">
             <select id="logName">
@@ -122,10 +122,10 @@
               <option value="manage">manage.log</option>
             </select>
             <input id="logLines" type="number" min="20" max="500" value="160">
-            <button id="refreshLogs" class="ghost">Refresh Logs</button>
+            <button id="refreshLogs" class="ghost">刷新日志</button>
           </div>
         </div>
-        <pre id="logOutput" class="log-output">Loading logs...</pre>
+        <pre id="logOutput" class="log-output">正在加载日志...</pre>
       </article>
     </section>
   </main>
