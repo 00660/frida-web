@@ -1,6 +1,6 @@
 #!/user/bin/env python3
 #
-# MagiskFrida build process
+# FridaWeb build process
 #
 # 1. Checks if project has a tag that matches frida tag
 #    Yes -> continue

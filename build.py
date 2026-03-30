@@ -61,13 +61,13 @@ def generate_version_code(project_tag: str) -> int:
 
 
 def create_module_prop(path: Path, project_tag: str, repo_slug: str):
-    module_prop = f"""id=magisk-frida
-name=MagiskFrida
+    module_prop = f"""id=frida-web
+name=FridaWeb
 version={project_tag}
 versionCode={generate_version_code(project_tag)}
-author=ViRb3 & enovella
+author=00660
 updateJson=https://github.com/{repo_slug}/releases/latest/download/updater.json
-description=Run frida-server on boot with LAN panel"""
+description=Frida server on boot with LAN control panel"""
 
     with open(path.joinpath("module.prop"), "w", newline="\n") as f:
         f.write(module_prop)
@@ -105,7 +105,7 @@ def create_updater_json(project_tag: str, repo_slug: str, repo_branch: str):
     updater = {
         "version": project_tag,
         "versionCode": generate_version_code(project_tag),
-        "zipUrl": f"https://github.com/{repo_slug}/releases/download/{project_tag}/MagiskFrida-{project_tag}.zip",
+        "zipUrl": f"https://github.com/{repo_slug}/releases/download/{project_tag}/FridaWeb-{project_tag}.zip",
         "changelog": f"https://raw.githubusercontent.com/{repo_slug}/{repo_branch}/CHANGELOG.md",
     }
 
@@ -116,7 +116,7 @@ def create_updater_json(project_tag: str, repo_slug: str, repo_branch: str):
 def package_module(project_tag: str):
     logger.info("Packaging module")
 
-    module_zip = PATH_BUILD.joinpath(f"MagiskFrida-{project_tag}.zip")
+    module_zip = PATH_BUILD.joinpath(f"FridaWeb-{project_tag}.zip")
 
     with zipfile.ZipFile(module_zip, "w", compression=zipfile.ZIP_DEFLATED) as zf:
         for root, _, files in os.walk(PATH_BUILD_TMP):

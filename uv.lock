@@ -59,7 +59,7 @@ wheels = [
 ]
 
 [[package]]
-name = "magisk-frida"
+name = "frida-web"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [

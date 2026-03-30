@@ -77,7 +77,7 @@ def get_origin_repo_slug() -> str:
     if match:
         return match.group("slug")
 
-    return "ViRb3/magisk-frida"
+    return "00660/frida-web"
 
 
 def get_origin_branch() -> str:

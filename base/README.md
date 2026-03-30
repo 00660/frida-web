@@ -1,7 +1,7 @@
-# MagiskFrida
+# FridaWeb
 > [Frida](https://frida.re) is a dynamic instrumentation toolkit for developers, reverse-engineers, and security researchers
 
-> [MagiskFrida](https://github.com/00660/frida-web) lets you run frida-server on boot with [Magisk](https://github.com/topjohnwu/Magisk)
+> [FridaWeb](https://github.com/00660/frida-web) lets you run frida-server on boot with [Magisk](https://github.com/topjohnwu/Magisk)
 
 ## Supported architectures
 - `arm64`, `arm`, `x86`, `x86_64`

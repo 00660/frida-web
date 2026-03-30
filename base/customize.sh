@@ -56,7 +56,7 @@ print_modname() {
   ui_print " "
   ui_print "    ********************************************"
   ui_print "    *          Magisk/KernelSU/APatch          *"
-  ui_print "    *                  Frida                   *"
+  ui_print "    *                FridaWeb                  *"
   ui_print "    ********************************************"
   ui_print " "
 }

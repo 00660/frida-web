@@ -1,4 +1,4 @@
-# MagiskFrida
+# FridaWeb
 
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/00660/frida-web/main.yml?branch=main)
 ![GitHub repo size](https://img.shields.io/github/repo-size/00660/frida-web)
@@ -6,7 +6,7 @@
 
 > [Frida](https://frida.re) is a dynamic instrumentation toolkit for developers, reverse-engineers, and security researchers
 
-> [MagiskFrida](README.md) lets you run frida-server on boot with multiple root solutions
+> [FridaWeb](README.md) lets you run frida-server on boot with multiple root solutions and a LAN panel
 
 ## Supported root solutions
 
@@ -18,7 +18,7 @@
 
 ## Instructions
 
-Install `MagiskFrida.zip` from [the releases](https://github.com/00660/frida-web/releases)
+Install `FridaWeb.zip` from [the releases](https://github.com/00660/frida-web/releases)
 
 > :information_source: Do not use the Magisk modules repository, it is obsolete and no longer receives updates
 
