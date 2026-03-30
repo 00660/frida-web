@@ -40,7 +40,7 @@ jobs:
             echo "NEW_TAG=$(cat NEW_TAG.txt)" >> $GITHUB_ENV
           fi
         env:
-          FORCE_RELEASE: true
+          FORCE_RELEASE: ${{ github.event.inputs.force_release }}
           MAGISK_FRIDA_REPO_SLUG: ${{ github.repository }}
           MAGISK_FRIDA_REPO_BRANCH: ${{ github.ref_name }}
 
