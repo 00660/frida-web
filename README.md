@@ -4,65 +4,65 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/00660/frida-web)
 ![GitHub downloads](https://img.shields.io/github/downloads/00660/frida-web/total)
 
-> [Frida](https://frida.re) is a dynamic instrumentation toolkit for developers, reverse-engineers, and security researchers
+> [Frida](https://frida.re) 是一个面向开发者、逆向工程师和安全研究人员的动态插桩工具
 
-> [FridaWeb](README.md) lets you run frida-server on boot with multiple root solutions and a LAN panel
+> [FridaWeb](README.md) 让你可以在多种 Root 方案下开机启动 `frida-server`，并通过局域网页面板进行管理
 
-## Supported root solutions
+## 支持的 Root 方案
 
 [Magisk](https://github.com/topjohnwu/Magisk), [KernelSU](https://github.com/tiann/KernelSU) and [APatch](https://github.com/bmax121/APatch)
 
-## Supported architectures
+## 支持的架构
 
 `arm64`, `arm`, `x86`, `x86_64`
 
-## Instructions
+## 安装方式
 
-Install `FridaWeb.zip` from [the releases](https://github.com/00660/frida-web/releases)
+从 [Releases](https://github.com/00660/frida-web/releases) 下载并安装 `FridaWeb.zip`
 
-> :information_source: Do not use the Magisk modules repository, it is obsolete and no longer receives updates
+> :information_source: 不要使用旧的 Magisk 模块仓库，那个渠道已经废弃，不再更新
 
-## LAN panel
+## 局域网页面板
 
-This fork adds a lightweight LAN panel served directly from the module with BusyBox `httpd`.
+这个版本增加了一个轻量级局域网页面板，直接由模块内的 BusyBox `httpd` 提供服务。
 
-- Default panel URL: `http://<device-ip>:28080/`
-- Default Frida listen address: `127.0.0.1:27042`
+- 默认面板地址：`http://<device-ip>:28080/`
+- 默认 Frida 监听地址：`127.0.0.1:27042`
 
-From the panel you can:
+你可以在面板中：
 
- - change the Frida port
- - enable or disable Frida auto-start
- - start, stop, and restart `frida-server`
- - read `service`, `action`, `utils`, `frida`, and `panel` logs
+- 修改 Frida 端口
+- 开启或关闭 Frida 开机自启
+- 启动、停止、重启 `frida-server`
+- 查看 `service`、`action`、`utils`、`frida`、`panel` 日志
 
-Security note:
+安全说明：
 
-- the panel is reachable on your LAN by default
-- Frida stays bound to `127.0.0.1`; use `adb forward` from your computer to connect
+- 面板默认可被同一局域网内的设备访问
+- Frida 始终绑定在 `127.0.0.1`，请通过电脑执行 `adb forward` 进行连接
 
-## How fast are frida-server updates?
+## 更新速度
 
-Instant! This module is hooked up to the official Frida build process
+基本可以做到同步更新，因为这个项目直接跟随 Frida 官方构建流程
 
-## Issues?
+## 遇到问题？
 
-Check out the [troubleshooting guide](TROUBLESHOOTING.md)
+请先查看 [故障排查说明](TROUBLESHOOTING.md)
 
-## Building yourself
+## 自行构建
 
 ```bash
 uv sync
 uv run python3 main.py
 ```
 
-- Release ZIP will be under `/build`
-- frida-server downloads will be under `/downloads`
+- 生成的发布 ZIP 位于 `/build`
+- 下载的 `frida-server` 文件位于 `/downloads`
 
-## Fork-friendly releases
+## 适配 Fork 的自动发版
 
-The build now derives release URLs from the current GitHub repository, so your fork can publish its own updater metadata instead of pointing back to upstream.
+当前构建流程会自动根据当前 GitHub 仓库生成 release 地址，因此你的 fork 会发布自己的更新信息，而不是继续指向上游仓库。
 
-- GitHub Actions release workflow supports both `master` and `main`
-- The workflow injects `MAGISK_FRIDA_REPO_SLUG` and `MAGISK_FRIDA_REPO_BRANCH`
-- `module.prop` and `updater.json` will point to your fork when built in your fork
+- GitHub Actions 的发版工作流同时支持 `master` 和 `main`
+- 工作流会自动注入 `MAGISK_FRIDA_REPO_SLUG` 和 `MAGISK_FRIDA_REPO_BRANCH`
+- 在你的 fork 中构建时，`module.prop` 和 `updater.json` 会自动指向你自己的仓库

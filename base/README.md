@@ -1,15 +1,16 @@
 # FridaWeb
-> [Frida](https://frida.re) is a dynamic instrumentation toolkit for developers, reverse-engineers, and security researchers
+> [Frida](https://frida.re) 是一个面向开发者、逆向工程师和安全研究人员的动态插桩工具
 
-> [FridaWeb](https://github.com/00660/frida-web) lets you run frida-server on boot with [Magisk](https://github.com/topjohnwu/Magisk)
+> [FridaWeb](https://github.com/00660/frida-web) 让你可以在 [Magisk](https://github.com/topjohnwu/Magisk) 下开机启动 `frida-server`
 
-## Supported architectures
+## 支持的架构
 - `arm64`, `arm`, `x86`, `x86_64`
 
-## How fast are frida-server updates?
-Instant! This module is hooked to the official Frida build process
+## 更新速度
+基本可以做到同步更新，因为这个项目直接跟随 Frida 官方构建流程
 
-## For issues and more information, check out the [main project repo](https://github.com/00660/frida-web)
+## 更多说明与问题反馈
+请查看主仓库：[https://github.com/00660/frida-web](https://github.com/00660/frida-web)
 
-## LAN panel
-- URL: `http://<device-ip>:28080/`
+## 局域网页面板
+- 地址：`http://<device-ip>:28080/`
